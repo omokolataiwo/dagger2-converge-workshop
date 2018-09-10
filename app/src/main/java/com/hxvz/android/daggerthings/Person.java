@@ -1,9 +1,14 @@
 package com.hxvz.android.daggerthings;
 
+import javax.inject.Inject;
+
 public class Person {
+    @Inject
     Profession profession;
+    @Inject
     Knowledge knowledge;
 
+    @Inject
     Person(Profession profession, Knowledge knowledge) {
         this.profession = profession;
         this.knowledge = knowledge;
