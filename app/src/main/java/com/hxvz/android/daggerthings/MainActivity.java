@@ -9,24 +9,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
     private Button btnPlay;
     private Button btnLearn;
     private Button btnWork;
     private Button btnSkillSet;
     private EditText editTxtBook;
-    private Person person;
-
     private TextView screen;
+
+    @Inject
+    protected Person person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Profession programmer = new Programmer();
-        BookFormatter bookFormatter = new HyphenBookFormatter();
-        Knowledge knowledge = new Knowledge(bookFormatter);
-        person = new Person(programmer, knowledge);
+        ((App) getApplication()).getPersonComponent().inject(this);
 
         editTxtBook = (EditText) findViewById(R.id.edit_txt_book_title);
 
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         btnSkillSet.setOnClickListener(onSkillSetBtnClicked());
 
         screen = findViewById(R.id.txtViewScreen);
-        screen.setHorizontallyScrolling(true);
     }
 
     private View.OnClickListener onPlayBtnClicked() {
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String title = editTxtBook.getText().toString();
-                Book book = new Book();
+                Book book = new Book(); // multiple instances
                 book.setTitle(title);
                 person.learn(book);
                 String updateScreen = "Added " + title + " to your skill set.";
@@ -86,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 screen.setText(person.getSkillSet());
+                screen.setMovementMethod(new ScrollingMovementMethod());
             }
         };
     }

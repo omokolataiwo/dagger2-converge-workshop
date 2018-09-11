@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class HyphenBookFormatter implements BookFormatter {
+public class AsteriskBookFormatter implements BookFormatter {
     @Inject
-    HyphenBookFormatter() {
+    AsteriskBookFormatter() {
 
     }
     public String format(List<Book> bookList) {
@@ -14,7 +14,7 @@ public class HyphenBookFormatter implements BookFormatter {
 
         for(Book book : bookList) {
             bookString.append(book.getTitle());
-            bookString.append("\n-----------------------------\n");
+            bookString.append("\n**********************\n");
         }
         return bookString.toString();
     }
