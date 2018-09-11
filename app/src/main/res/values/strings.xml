@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DaggerThings</string>
-    <string name="addition">Addition</string>
-    <string name="subtraction">Subtraction</string>
-    <string name="multiplication">Multiplication</string>
+    <string name="play">Play</string>
+    <string name="work">Work</string>
+    <string name="get_skill">Get Skill Set</string>
+    <string name="add_skill">Add Book</string>
 </resources>
